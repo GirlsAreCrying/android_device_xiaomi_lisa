@@ -40,6 +40,7 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/hw/camera.qcom.so': blob_fixup()
         .binary_regex_replace(b'\x73\x74\x5F\x6C\x69\x63\x65\x6E\x73\x65\x2E\x6C\x69\x63', b'\x63\x61\x6D\x65\x72\x61\x5F\x63\x6E\x66\x2E\x74\x78\x74')
         .add_needed('libprocessgroup_shim.so'),
+        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
     'vendor/lib64/hw/camera.xiaomi.so': blob_fixup()
         .sig_replace('29 07 00 94', '1F 20 03 D5'),
     'vendor/lib64/hw/com.qti.chi.override.so' : blob_fixup()
@@ -62,6 +63,8 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('remote_handle_open'),
     'vendor/lib64/libsensor_cal_v2.so': blob_fixup()
         .add_needed('libjsoncpp_shim.so'),
+    'vendor/lib/libaudiocloudctrl.so'): blob_fixup()
+        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
 }  # fmt: skip
 
 
